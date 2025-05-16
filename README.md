@@ -16,8 +16,9 @@ Utilizamos el dataset **SMS Spam Collection**, que contiene 5,572 mensajes etiqu
 - Visualizaciones univariadas, bivariadas y multivariadas
 - Formulación de hipótesis:
   - Los mensajes spam tienden a ser más largos.
-  - Palabras como “win”, “free”, “cash” aparecen más en spam.
+  - Palabras como money, “free”, claim aparecen más en spam.
   - Los mensajes spam tienen más signos de exclamación o letras mayúsculas.
+  - ¿Los trigramas en mensajes spam son más directos y repetitivos que en mensajes legítimos?
 - Análisis estadístico descriptivo
 - Detección de valores faltantes
 
@@ -37,42 +38,36 @@ Desarrollar y evaluar un modelo de clasificación que determine si un mensaje es
 - **Selección de características:** usando Chi-cuadrado (`chi2`) con `SelectKBest`
 - **Modelos evaluados:**
   - `Multinomial Naive Bayes` (modelo principal)
-  - Comparación opcional con `KNN` u otros clasificadores
+  - Comparación opcional con `Logistic Regression`
 - **Evaluación:**
   - `Accuracy`, `Precision`, `Recall`, `F1-Score`
   - `Matriz de confusión`
   - Interpretación de resultados
 
-### ✅ Resultado
-
-El modelo basado en **Naive Bayes** logró una alta precisión en la detección de mensajes spam, siendo más eficiente que otros enfoques como KNN debido a la naturaleza textual y dispersa del dataset.
-
-## 🤔 ¿Por qué se usa Naive Bayes y no KNN?
-
-### ✅ Ventajas de Naive Bayes:
-
-- Es un modelo **probabilístico** especialmente eficaz para datos de texto.
-- Funciona muy bien con datos **altamente dispersos** como los generados por TF-IDF.
-- Tiene un **entrenamiento y predicción muy rápidos**, ideal para grandes volúmenes de texto.
-- Requiere poca configuración y es **robusto al ruido** en el texto.
-
-### ⚠️ Desventajas de KNN para este caso:
-
-- KNN es un **modelo basado en distancias**, lo que lo vuelve ineficiente para datos de texto (alta dimensionalidad).
-- Requiere comparar cada nuevo mensaje con **todo el dataset**, lo cual **ralentiza la predicción**.
-- Es **sensible a outliers** y **no escala bien** en tareas de clasificación textual.
-
 ### 🧠 Conclusión:
 
-> En tareas de clasificación de texto como detección de spam, **Naive Bayes es más eficiente, preciso y adecuado que KNN**, y es una de las elecciones clásicas para este tipo de problemas.
+> A lo largo de este proyecto se exploraron diferentes configuraciones para construir un modelo efectivo de detección de mensajes spam, utilizando representaciones basadas en n-gramas y distintos algoritmos de clasificación.
+
+| Modelo                          | Accuracy  | F1 (spam) | Recall (spam) | Comentario                     |
+| ------------------------------- | --------- | --------- | ------------- | ------------------------------ |
+| **Naive Bayes (TF-IDF + Chi2)** | 91.1%     | 0.68      | 51%           | Rápido y simple, pero limitado |
+| **Logistic Regression**         | **96.1%** | **0.89**  | **89%**       | Muy preciso y balanceado       |
+
+Los modelos basados exclusivamente en bigramas o trigramas mostraron limitaciones claras. En particular, el modelo con trigramas presentó un recall más bajo, que los otros dos.
+
+En contraste, el uso de regresión logística con regularización de clases (class_weight='balanced') permitió alcanzar un rendimiento óptimo :
+
+Detecta correctamente el 89% de los mensajes spam, con una precisión del 90%.
+
+Mantiene un accuracy general de más del 96%, superando significativamente al modelo Naive Bayes.
 
 ---
 
 ## 📁 Estructura del proyecto
 
 📦 spam-detector
-┣ 📄 ProyectoDSParteI+TuApellido.ipynb
-┣ 📄 ProyectoParteIII+TuApellido.ipynb
+┣ 📄 ProyectoDSParteI+Sabido.ipynb
+┣ 📄 ProyectoParteIII+Sabido.ipynb
 ┣ 📄 README.md
 ┗ 📂 data
 ┗ 📄 ham-spam.csv
