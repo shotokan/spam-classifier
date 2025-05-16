@@ -1,0 +1,61 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment and dependency folders
+.env
+.venv
+env/
+venv/
+ENV/
+Pipfile.lock
+
+# VSCode settings
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Pytest cache
+.pytest_cache/
+
+# Logs
+*.log
+
+# Data files
+!data/*.csv
+!data/*.tsv
+data/*.txt
+
+
+# Output files
+*.out
+*.bak
+*.tmp
+
+# Notebook outputs
+*.nbconvert.ipynb
+
+# Virtual environments
+*.egg-info/
+.eggs/
+
+# mypy
+.mypy_cache/
+
+# pyre
+.pyre/
+
+# IPython history
+.history
+
+# pyright
+.pyright/
+
+# Backup files
+*~
+*.swp
