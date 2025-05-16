@@ -1,4 +1,4 @@
-# 📧 Spam Detector con Machine Learning
+# 📧 Proyecto Detector de Spam
 
 Este proyecto tiene como objetivo la detección automática de mensajes **spam** utilizando algoritmos de aprendizaje automático. Está dividido en dos fases principales: análisis exploratorio y desarrollo de un modelo de clasificación.
 
